@@ -8,10 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:sizer/sizer.dart';
-import 'package:younmin/globals/colors.dart';
-import 'package:younmin/globals/styles/button_styles.dart';
-import 'package:younmin/globals/styles/text_styles.dart';
-
+import 'package:younmin/globals/app_theme.dart';
 import 'logic/login/login_cubit.dart';
 import 'router/router.gr.dart';
 
@@ -71,45 +68,7 @@ class MyApp extends StatelessWidget {
             ],
           ),
           title: "Younmin",
-          theme: ThemeData(
-            scaffoldBackgroundColor: YounminColors.backGroundColor,
-            appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-            ),
-            primaryColor: YounminColors.primaryColor,
-            textTheme: TextTheme(
-              headline1: headline1Style,
-              headline2: headline2Style,
-              headline3: headline3Style,
-              headline4: headline4Style,
-              bodyText1: body1,
-              bodyText2: body2,
-            ),
-            elevatedButtonTheme:
-                ElevatedButtonThemeData(style: elevatedButtonStyle),
-            inputDecorationTheme: const InputDecorationTheme(
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                borderSide: BorderSide(
-                  color: YounminColors.textFieldColor,
-                  width: 1,
-                ),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Color(0xff666666), width: 1.5),
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.red, width: 1.5),
-              ),
-              errorBorder: OutlineInputBorder(
-                borderSide: BorderSide(
-                  color: Colors.red,
-                  width: 1.5,
-                ),
-              ),
-            ),
-          ),
+          theme: AppTheme.getTheme(),
           routerDelegate: _router.delegate(),
           routeInformationParser: _router.defaultRouteParser(),
         ),
