@@ -4,7 +4,7 @@ import 'package:sizer/sizer.dart';
 import 'package:younmin/globals/colors.dart';
 
 final TextStyle headline1Style = GoogleFonts.fredokaOne(
-    textStyle: TextStyle(
+    textStyle: const TextStyle(
         fontSize: 50,
         fontWeight: FontWeight.w900,
         color: YounminColors.textHeadline1Color));
