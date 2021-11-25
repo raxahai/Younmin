@@ -47,7 +47,7 @@ class AppTheme {
         ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: Colors.red,
+            color: YounminColors.textFieldErrorColor,
             width: 1.5,
           ),
         ),

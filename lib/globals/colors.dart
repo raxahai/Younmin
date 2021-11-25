@@ -14,6 +14,7 @@ class YounminColors {
   static const Color yearlyTodoListColor = Color(0xfff5f6fa);
   static const Color textFieldColor = Color(0xff666666);
   static const Color badSentenceColor = Color(0xffce4554);
+  static const Color textFieldErrorColor = Colors.red;
   static MaterialStateProperty<Color> materialStatePrimaryColor =
       MaterialStateProperty.all<Color>(primaryColor);
 }
