@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import 'package:younmin/globals/Strings/home_page_strings.dart';
 import 'package:younmin/logic/subscribe/subscribe_cubit.dart';
 
@@ -37,7 +38,7 @@ class Subscribe extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline3,
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
+                Container(
                   height: 30,
                 ),
                 SizedBox(
@@ -57,7 +58,9 @@ class Subscribe extends StatelessWidget {
                     },
                   ),
                 ),
-                SizedBox(height: 25),
+                Container(
+                  height: 25,
+                ),
                 ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<SubscribeCubit>(context).subscribeWithEmail(
