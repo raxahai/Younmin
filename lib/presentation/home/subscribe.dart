@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:younmin/globals/Strings/home_page_strings.dart';
+import 'package:younmin/globals/validators.dart';
 import 'package:younmin/logic/subscribe/subscribe_cubit.dart';
 
 final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -49,13 +50,7 @@ class Subscribe extends StatelessWidget {
                       hintText: 'Enter your email address',
                       isDense: true,
                     ),
-                    validator: (value) {
-                      if (value == null)
-                        return "email is required to subscribe";
-                      if (!EmailValidator.validate(value)) {
-                        return "please enter a valid email";
-                      }
-                    },
+                    validator: Validators.isValidEmail,
                   ),
                 ),
                 Container(
