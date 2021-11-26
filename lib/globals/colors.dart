@@ -15,6 +15,9 @@ class YounminColors {
   static const Color textFieldColor = Color(0xff666666);
   static const Color badSentenceColor = Color(0xffce4554);
   static const Color textFieldErrorColor = Colors.red;
+  static const Color lightGreyColor = Color(0xffD3D3D3);
+  static const Color transparentColor = Colors.transparent;
+  static const Color whiteSmokeColor = Color(0xffF5F5F5);
   static MaterialStateProperty<Color> materialStatePrimaryColor =
       MaterialStateProperty.all<Color>(primaryColor);
 }
