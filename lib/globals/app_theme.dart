@@ -30,6 +30,10 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: YounminColors.backGroundColor,
       primaryColor: primaryColor,
+      textButtonTheme: TextButtonThemeData(style: textButtonStyle),
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: YounminColors.darkPrimaryColor,
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(style: elevatedButtonStyle),
       inputDecorationTheme: const InputDecorationTheme(
         enabledBorder: OutlineInputBorder(
