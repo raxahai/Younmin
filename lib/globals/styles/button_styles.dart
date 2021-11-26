@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../colors.dart';
 
 final textButtonStyle = ButtonStyle(
-  overlayColor: MaterialStateProperty.all<Color>(Colors.transparent),
+  overlayColor: MaterialStateProperty.all<Color>(YounminColors.whiteSmokeColor),
   splashFactory: NoSplash.splashFactory,
 );
 
