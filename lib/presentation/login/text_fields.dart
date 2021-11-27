@@ -3,8 +3,8 @@ import 'package:younmin/globals/Strings/login_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
 import 'package:younmin/globals/validators.dart';
 
-class EmailField extends StatelessWidget {
-  const EmailField({
+class LoginEmailField extends StatelessWidget {
+  const LoginEmailField({
     Key? key,
     this.controller,
   }) : super(key: key);

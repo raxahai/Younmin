@@ -49,7 +49,7 @@ class Login extends StatelessWidget {
                       ),
                     ),
                     Flexible(child: SizedBox(height: 8.h)),
-                    EmailField(controller: _emailController),
+                    LoginEmailField(controller: _emailController),
                     Flexible(child: SizedBox(height: 3.h)),
                     PasswordField(
                       controller: _passwordController,
