@@ -1,9 +1,9 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
+import 'package:younmin/globals/Strings/global_strings.dart';
 import 'package:younmin/globals/Strings/home_page_strings.dart';
+import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
 import 'package:younmin/globals/validators.dart';
 import 'package:younmin/logic/subscribe/subscribe_cubit.dart';
 
@@ -42,16 +42,14 @@ class Subscribe extends StatelessWidget {
                 Container(
                   height: 30,
                 ),
-                SizedBox(
+                CustomTextField(
                   width: 400,
-                  child: TextFormField(
-                    controller: emailController,
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your email address',
-                      isDense: true,
-                    ),
-                    validator: Validators.isValidEmail,
+                  controller: emailController,
+                  decoration: const InputDecoration(
+                    hintText: GlobalStrings.enterEmail,
+                    isDense: true,
                   ),
+                  validator: Validators.isValidEmail,
                 ),
                 Container(
                   height: 25,
@@ -64,7 +62,7 @@ class Subscribe extends StatelessWidget {
                         emailController: emailController);
                   },
                   child: Text(
-                    "Send emails",
+                    GlobalStrings.sendEmail,
                     style: Theme.of(context)
                         .textTheme
                         .headline3!
