@@ -44,6 +44,7 @@ class _SignUpState extends State<SignUp> {
                   const LogoButton(textColor: YounminColors.darkPrimaryColor),
             ),
             body: Container(
+              margin: const EdgeInsets.all(10.0),
               decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage("assets/images/login/background.png"),
@@ -75,116 +76,105 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                 );
                               }),
-                              Flexible(
-                                child: SelectableText(
-                                  SignUpStrings.signUpToAccount,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline1!
-                                      .copyWith(fontSize: 35),
-                                  textAlign: TextAlign.center,
-                                ),
+                              SelectableText(
+                                SignUpStrings.signUpToAccount,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline1!
+                                    .copyWith(fontSize: 35),
+                                textAlign: TextAlign.center,
                               ),
-                              Flexible(child: SizedBox(height: 50)),
-                              Flexible(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 50),
-                                  child: SizedBox(
-                                      height: 70,
-                                      width: 500,
-                                      child: FirstNameAndGender(
-                                        controller: firstNameController,
-                                        onGenderChange: (state) {
-                                          isMale = state;
-                                        },
-                                      )),
+                              Container(
+                                height: 50,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 50),
+                                child: FirstNameAndGender(
+                                  controller: firstNameController,
+                                  onGenderChange: (state) {
+                                    isMale = state;
+                                  },
                                 ),
                               ),
                               Flexible(child: SizedBox(height: 20)),
-                              Flexible(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 50),
-                                  child: LastNameAndAge(
-                                    lastNameController: lastNameController,
-                                    ageController: ageController,
-                                  ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 50),
+                                child: LastNameAndAge(
+                                  lastNameController: lastNameController,
+                                  ageController: ageController,
                                 ),
                               ),
                               Flexible(child: SizedBox(height: 20)),
-                              Flexible(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 50),
-                                  child: EmailField(
-                                    controller: emailController,
-                                  ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 50),
+                                child: SignUpEmailField(
+                                  controller: emailController,
                                 ),
                               ),
                               Flexible(child: SizedBox(height: 20)),
-                              Flexible(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 50),
-                                  child: PasswordFields(
-                                    passwordController: passwordController,
-                                    confirmController:
-                                        confirmPasswordController,
-                                  ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 50),
+                                child: PasswordFields(
+                                  passwordController: passwordController,
+                                  confirmController: confirmPasswordController,
                                 ),
                               ),
-                              Flexible(child: SizedBox(height: 20)),
-                              Flexible(
-                                child: ElevatedButton(
-                                    onPressed: () {
-                                      BlocProvider.of<SignUpCubit>(context)
-                                          .signUp(
-                                        context,
-                                        firstNameController:
-                                            firstNameController,
-                                        lastNameController: lastNameController,
-                                        ageController: ageController,
-                                        emailController: emailController,
-                                        passwordController: passwordController,
-                                        confirmPasswordController:
-                                            confirmPasswordController,
-                                        isMale: isMale,
-                                        formKey: formKey,
-                                      );
-                                    },
-                                    child: Text(
-                                      SignUpStrings.signUp,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .headline3!
-                                          .copyWith(fontSize: 25),
-                                    )),
+                              Container(
+                                height: 20,
                               ),
-                              Flexible(child: SizedBox(height: 20)),
-                              Flexible(
+                              ElevatedButton(
+                                  onPressed: () {
+                                    BlocProvider.of<SignUpCubit>(context)
+                                        .signUp(
+                                      context,
+                                      firstNameController: firstNameController,
+                                      lastNameController: lastNameController,
+                                      ageController: ageController,
+                                      emailController: emailController,
+                                      passwordController: passwordController,
+                                      confirmPasswordController:
+                                          confirmPasswordController,
+                                      isMale: isMale,
+                                      formKey: formKey,
+                                    );
+                                  },
+                                  child: Text(
+                                    SignUpStrings.signUp,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headline3!
+                                        .copyWith(fontSize: 25),
+                                  )),
+                              Container(
+                                height: 20,
+                              ),
+                              Text(
+                                SignUpStrings.alreadyHasAccount,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline3!
+                                    .copyWith(
+                                      color: YounminColors.darkPrimaryColor,
+                                      fontSize: 25,
+                                    ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  context.router.navigate(const LoginRoute());
+                                },
                                 child: Text(
-                                  SignUpStrings.alreadyHasAccount,
+                                  SignUpStrings.login,
                                   style: Theme.of(context)
                                       .textTheme
                                       .headline3!
                                       .copyWith(
                                         color: YounminColors.darkPrimaryColor,
-                                        fontSize: 25,
+                                        fontSize: 30,
                                       ),
-                                ),
-                              ),
-                              Flexible(
-                                child: TextButton(
-                                  onPressed: () {
-                                    context.router.navigate(const LoginRoute());
-                                  },
-                                  child: Text(
-                                    SignUpStrings.login,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline3!
-                                        .copyWith(
-                                          color: YounminColors.darkPrimaryColor,
-                                          fontSize: 30,
-                                        ),
-                                  ),
                                 ),
                               ),
                             ],
