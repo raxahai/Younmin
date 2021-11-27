@@ -9,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:younmin/logic/helping_functions.dart';
 import 'package:younmin/router/router.gr.dart';
 
@@ -32,11 +33,14 @@ class SignUpCubit extends Cubit<SignUpState> {
     required isMale,
     required GlobalKey<FormState> formKey,
   }) async {
+    var progress = ProgressHUD.of(context);
     if (formKey.currentState!.validate()) {
       try {
+        progress!.show();
         await _auth.createUserWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
       } catch (err) {
+        progress!.dismiss();
         handleFirebaseError(err, context);
         return;
       }
