@@ -10,7 +10,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
-import 'package:younmin/logic/helping_functions.dart';
+import 'package:younmin/globals/utils/exception_handler.dart';
 import 'package:younmin/router/router.gr.dart';
 
 part 'sign_up_state.dart';
@@ -41,7 +41,7 @@ class SignUpCubit extends Cubit<SignUpState> {
             email: emailController.text, password: passwordController.text);
       } catch (err) {
         progress!.dismiss();
-        handleFirebaseError(err, context);
+        ExceptionHandler().handleFirebaseError(err, context);
         return;
       }
 

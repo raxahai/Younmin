@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:younmin/globals/utils/exception_handler.dart';
 import 'package:younmin/router/router.gr.dart';
 
 import '../helping_functions.dart';
@@ -43,7 +44,7 @@ class LoginCubit extends Cubit<LoginState> {
       } catch (err) {
         progress.dismiss();
 
-        handleFirebaseError(err, context);
+        ExceptionHandler().handleFirebaseError(err, context);
         return;
       }
 
@@ -74,7 +75,7 @@ class LoginCubit extends Cubit<LoginState> {
     } catch (err) {
       progress.dismiss();
 
-      handleFirebaseError(err, context);
+      ExceptionHandler().handleFirebaseError(err, context);
       return;
     }
     await addDataIfFirstTime(
@@ -96,7 +97,7 @@ class LoginCubit extends Cubit<LoginState> {
         await _auth.signInWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
       } catch (err) {
-        handleFirebaseError(err, context);
+        ExceptionHandler().handleFirebaseError(err, context);
         progress.dismiss();
         return;
       }
