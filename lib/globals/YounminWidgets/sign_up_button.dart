@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:younmin/globals/Strings/global_strings.dart';
+import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({
@@ -11,15 +12,9 @@ class SignUpButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
+    return CapsuleButton(
       onPressed: onPressed,
-      child: Text(
-        GlobalStrings.signUp,
-        style: Theme.of(context)
-            .textTheme
-            .headline3!
-            .copyWith(fontWeight: FontWeight.bold, fontSize: 30),
-      ),
+      buttonText: GlobalStrings.signUp,
     );
   }
 }
