@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
+import 'package:younmin/globals/Strings/global_strings.dart';
+import 'package:younmin/globals/Strings/yearlyTodo_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/choose_feeling.dart';
 import 'package:younmin/globals/YounminWidgets/logo_button.dart';
 import 'package:younmin/globals/colors.dart';
@@ -31,6 +33,7 @@ class YearlyTodo extends StatefulWidget {
 
 class _YearlyTodoState extends State<YearlyTodo>
     with AfterLayoutMixin<YearlyTodo> {
+  bool showMenu = true;
   @override
   Widget build(BuildContext context) {
     YearlyTodoCubit().getYearlyTodo();
@@ -78,14 +81,56 @@ class _YearlyTodoState extends State<YearlyTodo>
                                 ),
                                 Column(
                                   children: [
-                                    CircleAvatar(
-                                      backgroundImage: NetworkImage(user!
-                                              .photoURL ??
-                                          "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/542px-Unknown_person.jpg"),
-                                      backgroundColor:
-                                          YounminColors.primaryColor,
-                                      radius: 70,
-                                    ),
+                                    Stack(
+                                        alignment: Alignment.bottomRight,
+                                        children: [
+                                          BlocBuilder<YearlyTodoCubit,
+                                                  YearlyTodoState>(
+                                              buildWhen: (preState, state) =>
+                                                  state.imageFile != null,
+                                              builder: (BuildContext context,
+                                                  state) {
+                                                return CircleAvatar(
+                                                  backgroundImage:
+                                                      (state.imageFile != null
+                                                          ? MemoryImage(
+                                                              state.imageFile!)
+                                                          : NetworkImage(
+                                                              user!.photoURL ??
+                                                                  "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/542px-Unknown_person.jpg",
+                                                            )) as ImageProvider,
+                                                  backgroundColor: YounminColors
+                                                      .primaryColor,
+                                                  radius: 70,
+                                                );
+                                              }),
+                                          Positioned(
+                                            bottom: 15,
+                                            child: Container(
+                                              width: 30,
+                                              height: 30,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: YounminColors
+                                                    .lightGreyColor,
+                                              ),
+                                              child: IconButton(
+                                                tooltip: YearlyTodoStrings
+                                                    .editProfilePicture,
+                                                iconSize: 20,
+                                                padding: EdgeInsets.zero,
+                                                onPressed: () {
+                                                  print("working");
+                                                  BlocProvider.of<
+                                                              YearlyTodoCubit>(
+                                                          context)
+                                                      .uploadImage();
+                                                },
+                                                icon: const Icon(Icons.edit),
+                                              ),
+                                            ),
+                                          ),
+                                        ]),
                                     const SizedBox(
                                       height: 40,
                                     ),
@@ -117,67 +162,16 @@ class _YearlyTodoState extends State<YearlyTodo>
                         ),
                         Expanded(
                           flex: 5,
-                          child: Container(
-                            color: YounminColors.yearlyTodoListColor,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 15),
-                              child:
-                                  BlocBuilder<YearlyTodoCubit, YearlyTodoState>(
-                                      builder: (BuildContext context, state) {
-                                return ImplicitlyAnimatedList(
-                                  items: state.yearlyTodoDocs,
-                                  itemBuilder: (BuildContext context,
-                                      animation,
-                                      QueryDocumentSnapshot<
-                                              Map<String, dynamic>>
-                                          item,
-                                      int index) {
-                                    return SizeFadeTransition(
-                                      sizeFraction: 0.2,
-                                      curve: Curves.easeInOut,
-                                      animation: animation,
-                                      child: BlocProvider.value(
-                                        value: BlocProvider.of<YearlyTodoCubit>(
-                                            context),
-                                        child: YearlyTodoTile(
-                                          index: index,
-                                          item: item,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  // separatorBuilder: (BuildContext context, int index) =>
-                                  //     SizedBox(
-                                  //   height: 5.h,
-                                  // ),
-                                  areItemsTheSame: (QueryDocumentSnapshot<
-                                                  Map<String, dynamic>>
-                                              oldItem,
-                                          QueryDocumentSnapshot<
-                                                  Map<String, dynamic>>
-                                              newItem) =>
-                                      oldItem['createdAt'] ==
-                                      newItem["createdAt"],
-
-                                  removeItemBuilder: (context,
-                                      animation,
-                                      QueryDocumentSnapshot<
-                                              Map<String, dynamic>>
-                                          oldItem) {
-                                    return FadeTransition(
-                                      opacity: animation,
-                                      child: BlocProvider.value(
-                                        value: BlocProvider.of<YearlyTodoCubit>(
-                                            context),
-                                        child: YearlyTodoTile(
-                                          item: oldItem,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              }),
-                            ),
+                          child: Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.all(10),
+                              ),
+                              headingOfList(),
+                              Expanded(
+                                child: listOfYearlyTodo(),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -186,6 +180,66 @@ class _YearlyTodoState extends State<YearlyTodo>
                 }
                 return const Center(child: CircularProgressIndicator());
               }),
+        );
+      }),
+    );
+  }
+
+  Widget headingOfList() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          YearlyTodoStrings.tasks,
+          style: Theme.of(context).textTheme.headline4!.copyWith(fontSize: 24),
+        ),
+      ),
+    );
+  }
+
+  Widget listOfYearlyTodo() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 15),
+      child: BlocBuilder<YearlyTodoCubit, YearlyTodoState>(
+          builder: (BuildContext context, state) {
+        return ImplicitlyAnimatedList(
+          items: state.yearlyTodoDocs,
+          itemBuilder: (BuildContext context, animation,
+              QueryDocumentSnapshot<Map<String, dynamic>> item, int index) {
+            return SizeFadeTransition(
+              sizeFraction: 0.2,
+              curve: Curves.easeInOut,
+              animation: animation,
+              child: BlocProvider.value(
+                value: BlocProvider.of<YearlyTodoCubit>(context),
+                child: YearlyTodoTile(
+                  index: index,
+                  item: item,
+                ),
+              ),
+            );
+          },
+          // separatorBuilder: (BuildContext context, int index) =>
+          //     SizedBox(
+          //   height: 5.h,
+          // ),
+          areItemsTheSame: (QueryDocumentSnapshot<Map<String, dynamic>> oldItem,
+                  QueryDocumentSnapshot<Map<String, dynamic>> newItem) =>
+              oldItem['createdAt'] == newItem["createdAt"],
+
+          removeItemBuilder: (context, animation,
+              QueryDocumentSnapshot<Map<String, dynamic>> oldItem) {
+            return FadeTransition(
+              opacity: animation,
+              child: BlocProvider.value(
+                value: BlocProvider.of<YearlyTodoCubit>(context),
+                child: YearlyTodoTile(
+                  item: oldItem,
+                ),
+              ),
+            );
+          },
         );
       }),
     );
@@ -202,7 +256,7 @@ class _YearlyTodoState extends State<YearlyTodo>
               body: Column(
                 children: [
                   Text(
-                    "welcome back, how are you feeling today",
+                    YearlyTodoStrings.welcomeBack,
                     style: Theme.of(context)
                         .textTheme
                         .headline2!
@@ -216,7 +270,7 @@ class _YearlyTodoState extends State<YearlyTodo>
                   ),
                 ],
               ),
-              btnOkText: "Add check",
+              btnOkText: YearlyTodoStrings.addCheck,
               btnCancelOnPress: () {})
           .show();
     }
