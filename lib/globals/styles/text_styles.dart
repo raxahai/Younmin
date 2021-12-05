@@ -10,7 +10,7 @@ final TextStyle headline1Style = GoogleFonts.fredokaOne(
         color: YounminColors.textHeadline1Color));
 
 final TextStyle headline2Style = GoogleFonts.lato(
-  textStyle: TextStyle(fontSize: 6.sp, color: YounminColors.darkPrimaryColor),
+  textStyle: TextStyle(fontSize: 6.sp, color: YounminColors.primaryColor),
   fontWeight: FontWeight.w900,
 );
 final TextStyle headline3Style = GoogleFonts.lato(
@@ -20,15 +20,15 @@ final TextStyle headline3Style = GoogleFonts.lato(
 );
 
 final TextStyle body1 = GoogleFonts.lato(
-  textStyle: TextStyle(fontSize: 4.sp, color: Colors.black),
+  textStyle: TextStyle(fontSize: 4.sp, color: YounminColors.primaryColor),
   fontWeight: FontWeight.w900,
 );
 final TextStyle body2 = GoogleFonts.lato(
-  textStyle: const TextStyle(fontSize: 12, color: Colors.black),
+  textStyle: const TextStyle(fontSize: 12, color: YounminColors.primaryColor),
   fontWeight: FontWeight.w900,
 );
 
 final TextStyle headline4Style = GoogleFonts.lato(
-  textStyle: TextStyle(fontSize: 4.sp, color: YounminColors.darkPrimaryColor),
+  textStyle: TextStyle(fontSize: 4.sp, color: YounminColors.primaryColor),
   fontWeight: FontWeight.w900,
 );
