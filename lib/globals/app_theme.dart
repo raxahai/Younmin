@@ -25,17 +25,20 @@ class AppTheme {
     final ThemeData base = ThemeData();
     return base.copyWith(
       appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.transparent,
+        backgroundColor: YounminColors.appBarColor,
         elevation: 0,
       ),
       scaffoldBackgroundColor: YounminColors.backGroundColor,
       primaryColor: primaryColor,
       textButtonTheme: TextButtonThemeData(style: textButtonStyle),
       textSelectionTheme: const TextSelectionThemeData(
-        cursorColor: YounminColors.darkPrimaryColor,
+        cursorColor: YounminColors.secondaryColor,
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(style: elevatedButtonStyle),
       inputDecorationTheme: const InputDecorationTheme(
+        hintStyle: TextStyle(
+          color: YounminColors.textFieldHintColor,
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(10)),
           borderSide: BorderSide(
