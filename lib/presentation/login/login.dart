@@ -5,6 +5,7 @@ import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
 import 'package:younmin/globals/Strings/login_page_strings.dart';
+import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/logo_button.dart';
 import 'package:younmin/globals/colors.dart';
 import 'package:younmin/logic/login/login_cubit.dart';
@@ -25,11 +26,13 @@ class Login extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            title: const LogoButton(textColor: YounminColors.darkPrimaryColor),
+            title: const LogoButton(),
           ),
           body: Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
+                    colorFilter: ColorFilter.mode(
+                        YounminColors.whiteColor, BlendMode.srcATop),
                     image: AssetImage("assets/images/login/background.png"),
                     fit: BoxFit.cover)),
             child: Center(
@@ -55,83 +58,72 @@ class Login extends StatelessWidget {
                       controller: _passwordController,
                     ),
                     Flexible(child: SizedBox(height: 5.h)),
-                    Flexible(
-                      child: ElevatedButton(
+                    CapsuleButton(
+                      minHeight: 50,
+                      minWidth: 250,
+                      onPressed: () {
+                        BlocProvider.of<LoginCubit>(context)
+                            .loginWithEmailAndPassword(
+                          context,
+                          emailController: _emailController,
+                          passwordController: _passwordController,
+                          formKey: formKey,
+                        );
+                      },
+                      buttonText: LoginStrings.login,
+                    ),
+                    SizedBox(height: 2.h),
+                    TextButton(
+                      onPressed: () {
+                        context.router.navigate(const SignUpRoute());
+                      },
+                      child: Text(
+                        LoginStrings.createAccount,
+                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                              color: YounminColors.secondaryColor,
+                              fontSize: 15,
+                            ),
+                      ),
+                    ),
+                    Text(
+                      LoginStrings.loginWith,
+                      style: Theme.of(context).textTheme.headline3!.copyWith(
+                            color: YounminColors.secondaryColor,
+                            fontSize: 25,
+                          ),
+                    ),
+                    Row(
+                      // mainAxisSize: MainAxisSize.cente,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
                           onPressed: () {
                             BlocProvider.of<LoginCubit>(context)
-                                .loginWithEmailAndPassword(
-                              context,
-                              emailController: _emailController,
-                              passwordController: _passwordController,
-                              formKey: formKey,
-                            );
+                                .loginWithFacebook(context);
                           },
-                          child: Text(
-                            LoginStrings.login,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline3!
-                                .copyWith(fontSize: 25),
-                          )),
-                    ),
-                    Flexible(child: SizedBox(height: 2.h)),
-                    Flexible(
-                      child: TextButton(
-                        onPressed: () {
-                          context.router.navigate(const SignUpRoute());
-                        },
-                        child: Text(
-                          LoginStrings.createAccount,
-                          style:
-                              Theme.of(context).textTheme.headline3!.copyWith(
-                                    color: YounminColors.darkPrimaryColor,
-                                    fontSize: 15,
-                                  ),
+                          icon: const FaIcon(
+                            FontAwesomeIcons.facebook,
+                            color: YounminColors.faceBookColor,
+                          ),
+                          iconSize: 70,
+                          splashRadius: 33,
+                          splashColor: YounminColors.primaryColor,
                         ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Text(
-                        LoginStrings.loginWith,
-                        style: Theme.of(context).textTheme.headline3!.copyWith(
-                              color: YounminColors.darkPrimaryColor,
-                              fontSize: 25,
-                            ),
-                      ),
-                    ),
-                    Flexible(
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          IconButton(
-                            onPressed: () {
-                              BlocProvider.of<LoginCubit>(context)
-                                  .loginWithFacebook(context);
-                            },
-                            icon: const FaIcon(
-                              FontAwesomeIcons.facebook,
-                              color: YounminColors.faceBookColor,
-                            ),
-                            iconSize: 70,
-                            splashRadius: 40,
-                            splashColor: YounminColors.primaryColor,
+                        SizedBox(width: 1.w),
+                        IconButton(
+                          onPressed: () {
+                            BlocProvider.of<LoginCubit>(context)
+                                .loginWithGoogle(context);
+                          },
+                          icon: const FaIcon(
+                            FontAwesomeIcons.googlePlus,
+                            color: YounminColors.googleColor,
                           ),
-                          SizedBox(width: 1.w),
-                          IconButton(
-                            onPressed: () {
-                              BlocProvider.of<LoginCubit>(context)
-                                  .loginWithGoogle(context);
-                            },
-                            icon: const FaIcon(
-                              FontAwesomeIcons.googlePlus,
-                              color: YounminColors.googleColor,
-                            ),
-                            iconSize: 70,
-                            splashRadius: 40,
-                            splashColor: YounminColors.primaryColor,
-                          ),
-                        ],
-                      ),
+                          iconSize: 70,
+                          splashRadius: 31,
+                          splashColor: YounminColors.primaryColor,
+                        ),
+                      ],
                     )
                   ],
                 ),

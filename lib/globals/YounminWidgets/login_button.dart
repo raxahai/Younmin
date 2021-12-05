@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:younmin/globals/Strings/global_strings.dart';
-
-import '../colors.dart';
+import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
@@ -13,22 +12,9 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: Theme.of(context).elevatedButtonTheme.style!.copyWith(
-            backgroundColor: YounminColors.materialStatePrimaryColor,
-            minimumSize: MaterialStateProperty.all<Size>(Size(
-              130,
-              40,
-            )),
-          ),
+    return CapsuleButton(
       onPressed: onPressed,
-      child: Text(
-        GlobalStrings.login,
-        style: Theme.of(context)
-            .textTheme
-            .headline3!
-            .copyWith(fontSize: 30, color: Colors.white),
-      ),
+      buttonText: GlobalStrings.login,
     );
   }
 }
