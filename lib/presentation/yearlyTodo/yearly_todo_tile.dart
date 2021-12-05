@@ -4,6 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:younmin/globals/Strings/global_strings.dart';
+import 'package:younmin/globals/Strings/yearlyTodo_page_strings.dart';
+import 'package:younmin/globals/YounminWidgets/on_hover_button.dart';
+import 'package:younmin/globals/colors.dart';
 import 'package:younmin/logic/yearlyTodo/yearly_todo_cubit.dart';
 import 'package:younmin/router/router.gr.dart';
 
@@ -19,7 +23,7 @@ class YearlyTodoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Tooltip(
-      message: "show daily tasks",
+      message: YearlyTodoStrings.showDailyTask,
       child: SizedBox(
         height: 120,
         child: Card(
@@ -38,7 +42,7 @@ class YearlyTodoTile extends StatelessWidget {
             subtitle: Row(
               children: [
                 Text(
-                  "feeling about this task: ",
+                  YearlyTodoStrings.feelingAboutTask,
                   style: Theme.of(context).textTheme.bodyText2,
                 ),
                 SizedBox(
@@ -53,40 +57,53 @@ class YearlyTodoTile extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Flexible(
-                  child: IconButton(
-                    iconSize: 30,
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext _) {
-                            return BlocProvider.value(
-                                child: EditYearlyTodo(
-                                  taskDoc: item,
-                                ),
-                                value:
-                                    BlocProvider.of<YearlyTodoCubit>(context));
-                          });
-                    },
-                    icon: const FaIcon(FontAwesomeIcons.edit),
-                    splashRadius: 30,
+                  child: OnHoverButton(
+                    hoveredTransform: Matrix4.identity()..scale(1.2),
+                    animationDuration: const Duration(milliseconds: 200),
+                    child: IconButton(
+                      hoverColor: YounminColors.transparentColor,
+                      iconSize: 30,
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext _) {
+                              return BlocProvider.value(
+                                  child: EditYearlyTodo(
+                                    taskDoc: item,
+                                  ),
+                                  value: BlocProvider.of<YearlyTodoCubit>(
+                                      context));
+                            });
+                      },
+                      icon: const FaIcon(FontAwesomeIcons.edit),
+                      splashRadius: 30,
+                    ),
                   ),
                 ),
                 Flexible(
-                  child: IconButton(
-                    iconSize: 30,
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext _) => BlocProvider.value(
-                                value:
-                                    BlocProvider.of<YearlyTodoCubit>(context),
-                                child: DeleteYearlyTodo(
-                                  taskDoc: item,
-                                ),
-                              ));
-                    },
-                    icon: const FaIcon(FontAwesomeIcons.trash),
-                    splashRadius: 30,
+                  child: OnHoverButton(
+                    hoveredTransform: Matrix4.identity()..scale(1.2),
+                    animationDuration: const Duration(milliseconds: 200),
+                    child: IconButton(
+                      hoverColor: YounminColors.transparentColor,
+                      iconSize: 30,
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext _) => BlocProvider.value(
+                                  value:
+                                      BlocProvider.of<YearlyTodoCubit>(context),
+                                  child: DeleteYearlyTodo(
+                                    taskDoc: item,
+                                  ),
+                                ));
+                      },
+                      icon: const FaIcon(
+                        FontAwesomeIcons.trash,
+                        color: YounminColors.redColor,
+                      ),
+                      splashRadius: 30,
+                    ),
                   ),
                 )
               ],

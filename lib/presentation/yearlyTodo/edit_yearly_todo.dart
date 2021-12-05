@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/globals/Strings/yearlyTodo_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/choose_feeling.dart';
+import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
 import 'package:younmin/globals/colors.dart';
 import 'package:younmin/logic/yearlyTodo/yearly_todo_cubit.dart';
 
@@ -36,92 +37,92 @@ class _EditYearlyTodoState extends State<EditYearlyTodo> {
       backgroundColor: Colors.white,
       child: Container(
         width: 55.w,
-        height: 50.h,
+        height: 60.h,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.sp),
+          padding: EdgeInsets.symmetric(horizontal: 5.sp, vertical: 5.sp),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                "Edit your goal",
+                YearlyTodoStrings.editYourGoal,
                 style: Theme.of(context)
                     .textTheme
                     .headline1!
                     .copyWith(fontSize: 10.sp),
               ),
-              Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text("what do you wanna do for this year",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText1!
-                            .copyWith(color: YounminColors.textHeadline1Color)),
-                  ),
-                  SizedBox(height: 1.h),
-                  SizedBox(
-                    height: 5.h,
-                    width: double.infinity,
-                    child: TextField(
-                      controller: goalController,
-                      style: Theme.of(context).textTheme.headline3,
-                    ),
-                  )
-                ],
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  YearlyTodoStrings.whatToDoYear,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(color: YounminColors.textHeadline1Color),
+                ),
               ),
-              Column(
-                children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text("That feeling when you achieve your goal",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyText1!
-                            .copyWith(color: YounminColors.textHeadline1Color)),
-                  ),
-                  SizedBox(height: 1.h),
-                  Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(3.sp), // if you need this
-                      side: const BorderSide(
-                        color: YounminColors.textFieldColor,
-                        width: 2,
-                      ),
-                    ),
-                    child: Container(
-                      color: Colors.transparent,
-                      width: double.infinity,
-                      height: 15.h,
-                      child: ChooseFeeling(onChoosed: (feelingNum) {
-                        feeling = feelingNum;
-                      }),
-                    ),
-                  )
-                ],
+              SizedBox(height: 1.h),
+              SizedBox(
+                width: double.infinity,
+                child: CustomTextField(
+                  controller: goalController,
+                  style: Theme.of(context).textTheme.headline3,
+                ),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    BlocProvider.of<YearlyTodoCubit>(context).updateYearlyTodo(
-                        context,
-                        goalController: goalController,
-                        feeling: feeling,
-                        doc: widget.taskDoc);
-                  },
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all<Size>(Size(
-                      double.infinity,
-                      6.w,
+              SizedBox(height: 3.h),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  YearlyTodoStrings.feelingAchieveGoal,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(color: YounminColors.textHeadline1Color),
+                ),
+              ),
+              SizedBox(height: 1.h),
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(3.sp), // if you need this
+                  side: const BorderSide(
+                    color: YounminColors.textFieldColor,
+                    width: 2,
+                  ),
+                ),
+                child: Container(
+                  color: Colors.transparent,
+                  width: double.infinity,
+                  height: 12.h,
+                  child: ChooseFeeling(onChoosed: (feelingNum) {
+                    feeling = feelingNum;
+                  }),
+                ),
+              ),
+              SizedBox(
+                height: 2.h,
+              ),
+              Expanded(
+                child: ElevatedButton(
+                    onPressed: () {
+                      BlocProvider.of<YearlyTodoCubit>(context)
+                          .updateYearlyTodo(context,
+                              goalController: goalController,
+                              feeling: feeling,
+                              doc: widget.taskDoc);
+                    },
+                    style: ButtonStyle(
+                      minimumSize: MaterialStateProperty.all<Size>(Size(
+                        double.infinity,
+                        10.h,
+                      )),
+                    ),
+                    child: Text(
+                      YearlyTodoStrings.editGoal,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline1!
+                          .copyWith(fontSize: 7.sp),
                     )),
-                  ),
-                  child: Text(
-                    'Edit goal',
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline1!
-                        .copyWith(fontSize: 7.sp),
-                  ))
+              )
             ],
           ),
         ),
