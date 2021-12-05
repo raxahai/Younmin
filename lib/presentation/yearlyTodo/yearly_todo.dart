@@ -10,6 +10,7 @@ import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorder
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:younmin/globals/Strings/global_strings.dart';
 import 'package:younmin/globals/Strings/yearlyTodo_page_strings.dart';
+import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/choose_feeling.dart';
 import 'package:younmin/globals/YounminWidgets/logo_button.dart';
 import 'package:younmin/globals/colors.dart';
@@ -45,7 +46,7 @@ class _YearlyTodoState extends State<YearlyTodo>
         BlocProvider.of<YearlyTodoCubit>(context).getYearlyTodo();
         return Scaffold(
           floatingActionButton: FloatingActionButton(
-            backgroundColor: YounminColors.primaryColor,
+            backgroundColor: YounminColors.secondaryColor,
             onPressed: () {
               showDialog(
                   context: context,
@@ -55,7 +56,10 @@ class _YearlyTodoState extends State<YearlyTodo>
                         value: BlocProvider.of<YearlyTodoCubit>(context));
                   });
             },
-            child: const FaIcon(FontAwesomeIcons.plus),
+            child: const FaIcon(
+              FontAwesomeIcons.plus,
+              color: YounminColors.primaryColor,
+            ),
           ),
           body: FutureBuilder(
               future: getUser(),
@@ -68,7 +72,7 @@ class _YearlyTodoState extends State<YearlyTodo>
                         Expanded(
                           flex: 3,
                           child: Container(
-                            color: Colors.white,
+                            color: YounminColors.lightBlack,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -76,7 +80,6 @@ class _YearlyTodoState extends State<YearlyTodo>
                                   padding: EdgeInsets.only(top: 10),
                                   child: LogoButton(
                                     navigateOnTap: false,
-                                    textColor: YounminColors.darkPrimaryColor,
                                   ),
                                 ),
                                 Column(
@@ -120,7 +123,6 @@ class _YearlyTodoState extends State<YearlyTodo>
                                                 iconSize: 20,
                                                 padding: EdgeInsets.zero,
                                                 onPressed: () {
-                                                  print("working");
                                                   BlocProvider.of<
                                                               YearlyTodoCubit>(
                                                           context)
@@ -141,18 +143,20 @@ class _YearlyTodoState extends State<YearlyTodo>
                                     ),
                                   ],
                                 ),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      BlocProvider.of<LoginCubit>(context)
-                                          .logout(context);
-                                    },
-                                    child: Text(
-                                      "Log out",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1!
-                                          .copyWith(fontSize: 20),
-                                    )),
+                                CapsuleButton(
+                                  minHeight: 50,
+                                  minWidth: 220,
+                                  onPressed: () {
+                                    BlocProvider.of<LoginCubit>(context)
+                                        .logout(context);
+                                  },
+                                  buttonText: "Log out",
+                                  //   style: Theme.of(context)
+                                  //       .textTheme
+                                  //       .bodyText1!
+                                  //       .copyWith(fontSize: 20),
+                                  // )
+                                ),
                                 const SizedBox(
                                   height: 15,
                                 )
@@ -192,7 +196,10 @@ class _YearlyTodoState extends State<YearlyTodo>
         alignment: Alignment.centerLeft,
         child: Text(
           YearlyTodoStrings.tasks,
-          style: Theme.of(context).textTheme.headline4!.copyWith(fontSize: 24),
+          style: Theme.of(context).textTheme.headline4!.copyWith(
+                fontSize: 24,
+                color: YounminColors.secondaryColor,
+              ),
         ),
       ),
     );

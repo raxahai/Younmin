@@ -14,6 +14,7 @@ class DeleteYearlyTodo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: YounminColors.lightBlack,
       title: Text(
         YearlyTodoStrings.deleteTask,
         textAlign: TextAlign.center,
@@ -26,14 +27,19 @@ class DeleteYearlyTodo extends StatelessWidget {
         // usually buttons at the bottom of the dialog
         BoxButton(
           buttonText: YearlyTodoStrings.close,
-          buttonTextStyle: Theme.of(context).textTheme.bodyText1,
+          buttonTextStyle: Theme.of(context)
+              .textTheme
+              .bodyText1!
+              .copyWith(color: YounminColors.secondaryColor),
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         BoxButton(
           buttonText: YearlyTodoStrings.delete,
-          buttonTextStyle: Theme.of(context).textTheme.bodyText1,
+          buttonTextStyle: Theme.of(context).textTheme.bodyText1!.copyWith(
+                color: YounminColors.secondaryColor,
+              ),
           buttonStyle: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
                 YounminColors.redColor,

@@ -132,7 +132,10 @@ class SignUpEmailField extends StatelessWidget {
               return IconButton(
                 iconSize: 30,
                 tooltip: "profile image",
-                icon: FaIcon(FontAwesomeIcons.fileImage),
+                icon: const FaIcon(
+                  FontAwesomeIcons.fileImage,
+                  color: YounminColors.secondaryColor,
+                ),
                 onPressed: () {
                   BlocProvider.of<SignUpCubit>(context).uploadImage();
                 },

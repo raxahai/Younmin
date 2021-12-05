@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'package:younmin/globals/Strings/yearlyTodo_page_strings.dart';
+import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/choose_feeling.dart';
 import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
 import 'package:younmin/globals/colors.dart';
@@ -34,7 +35,7 @@ class _EditYearlyTodoState extends State<EditYearlyTodo> {
         borderRadius: BorderRadius.circular(2.sp),
       ),
       elevation: 0,
-      backgroundColor: Colors.white,
+      backgroundColor: YounminColors.lightBlack,
       child: Container(
         width: 55.w,
         height: 60.h,
@@ -57,7 +58,7 @@ class _EditYearlyTodoState extends State<EditYearlyTodo> {
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
-                      .copyWith(color: YounminColors.textHeadline1Color),
+                      .copyWith(color: YounminColors.secondaryColor),
                 ),
               ),
               SizedBox(height: 1.h),
@@ -76,7 +77,7 @@ class _EditYearlyTodoState extends State<EditYearlyTodo> {
                   style: Theme.of(context)
                       .textTheme
                       .bodyText1!
-                      .copyWith(color: YounminColors.textHeadline1Color),
+                      .copyWith(color: YounminColors.secondaryColor),
                 ),
               ),
               SizedBox(height: 1.h),
@@ -101,28 +102,23 @@ class _EditYearlyTodoState extends State<EditYearlyTodo> {
                 height: 2.h,
               ),
               Expanded(
-                child: ElevatedButton(
-                    onPressed: () {
-                      BlocProvider.of<YearlyTodoCubit>(context)
-                          .updateYearlyTodo(context,
-                              goalController: goalController,
-                              feeling: feeling,
-                              doc: widget.taskDoc);
-                    },
-                    style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all<Size>(Size(
-                        double.infinity,
-                        10.h,
-                      )),
-                    ),
-                    child: Text(
-                      YearlyTodoStrings.editGoal,
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1!
-                          .copyWith(fontSize: 7.sp),
-                    )),
-              )
+                child: CapsuleButton(
+                  onPressed: () {
+                    BlocProvider.of<YearlyTodoCubit>(context).updateYearlyTodo(
+                        context,
+                        goalController: goalController,
+                        feeling: feeling,
+                        doc: widget.taskDoc);
+                  },
+                  minWidth: double.infinity,
+                  minHeight: 10.h,
+                  buttonText: YearlyTodoStrings.editGoal,
+                  buttonTextStyle:
+                      Theme.of(context).textTheme.headline4!.copyWith(
+                            fontSize: 7.sp,
+                          ),
+                ),
+              ),
             ],
           ),
         ),

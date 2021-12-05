@@ -6,6 +6,7 @@ import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:sizer/sizer.dart';
 import 'package:younmin/globals/Strings/sign_up_page_strings.dart';
+import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/logo_button.dart';
 import 'package:younmin/globals/colors.dart';
 import 'package:younmin/logic/signUp/sign_up_cubit.dart';
@@ -40,13 +41,17 @@ class _SignUpState extends State<SignUp> {
           return Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
-              title:
-                  const LogoButton(textColor: YounminColors.darkPrimaryColor),
+              title: const LogoButton(
+                textColor: YounminColors.secondaryColor,
+              ),
             ),
             body: Container(
-              margin: const EdgeInsets.all(10.0),
               decoration: const BoxDecoration(
                   image: DecorationImage(
+                      colorFilter: ColorFilter.mode(
+                        YounminColors.secondaryColor,
+                        BlendMode.srcATop,
+                      ),
                       image: AssetImage("assets/images/login/background.png"),
                       fit: BoxFit.cover)),
               child: Center(
@@ -124,31 +129,32 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               ),
                               Container(
-                                height: 20,
+                                height: 5.h,
                               ),
-                              ElevatedButton(
-                                  onPressed: () {
-                                    BlocProvider.of<SignUpCubit>(context)
-                                        .signUp(
-                                      context,
-                                      firstNameController: firstNameController,
-                                      lastNameController: lastNameController,
-                                      ageController: ageController,
-                                      emailController: emailController,
-                                      passwordController: passwordController,
-                                      confirmPasswordController:
-                                          confirmPasswordController,
-                                      isMale: isMale,
-                                      formKey: formKey,
-                                    );
-                                  },
-                                  child: Text(
-                                    SignUpStrings.signUp,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .headline3!
-                                        .copyWith(fontSize: 25),
-                                  )),
+                              CapsuleButton(
+                                minHeight: 50,
+                                minWidth: 250,
+                                onPressed: () {
+                                  BlocProvider.of<SignUpCubit>(context).signUp(
+                                    context,
+                                    firstNameController: firstNameController,
+                                    lastNameController: lastNameController,
+                                    ageController: ageController,
+                                    emailController: emailController,
+                                    passwordController: passwordController,
+                                    confirmPasswordController:
+                                        confirmPasswordController,
+                                    isMale: isMale,
+                                    formKey: formKey,
+                                  );
+                                },
+                                buttonText: SignUpStrings.signUp,
+                                // style: Theme.of(context)
+                                //     .textTheme
+                                //     .headline3!
+                                //     .copyWith(fontSize: 25),
+                                // ),
+                              ),
                               Container(
                                 height: 20,
                               ),
@@ -158,7 +164,7 @@ class _SignUpState extends State<SignUp> {
                                     .textTheme
                                     .headline3!
                                     .copyWith(
-                                      color: YounminColors.darkPrimaryColor,
+                                      color: YounminColors.secondaryColor,
                                       fontSize: 25,
                                     ),
                               ),
@@ -172,7 +178,7 @@ class _SignUpState extends State<SignUp> {
                                       .textTheme
                                       .headline3!
                                       .copyWith(
-                                        color: YounminColors.darkPrimaryColor,
+                                        color: YounminColors.secondaryColor,
                                         fontSize: 30,
                                       ),
                                 ),

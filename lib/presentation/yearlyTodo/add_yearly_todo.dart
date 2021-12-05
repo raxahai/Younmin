@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/choose_feeling.dart';
 import 'package:younmin/globals/YounminWidgets/on_hover_button.dart';
 import 'package:younmin/globals/colors.dart';
@@ -24,7 +25,7 @@ class _AddYearlyTodoState extends State<AddYearlyTodo> {
         borderRadius: BorderRadius.circular(2.sp),
       ),
       elevation: 0,
-      backgroundColor: Colors.white,
+      backgroundColor: YounminColors.lightBlack,
       child: SizedBox(
         width: 55.w,
         height: 63.h,
@@ -89,25 +90,20 @@ class _AddYearlyTodoState extends State<AddYearlyTodo> {
                 height: 2.h,
               ),
               Expanded(
-                child: ElevatedButton(
-                    onPressed: () {
-                      BlocProvider.of<YearlyTodoCubit>(context)
-                          .createNewYearlyTodo(context,
-                              goalController: goalController, feeling: feeling);
-                    },
-                    style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all<Size>(Size(
-                        double.infinity,
-                        10.h,
-                      )),
-                    ),
-                    child: Text(
-                      'Add goal',
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline1!
-                          .copyWith(fontSize: 7.sp),
-                    )),
+                child: CapsuleButton(
+                  onPressed: () {
+                    BlocProvider.of<YearlyTodoCubit>(context)
+                        .createNewYearlyTodo(context,
+                            goalController: goalController, feeling: feeling);
+                  },
+                  minWidth: double.infinity,
+                  minHeight: 10.h,
+                  buttonText: 'Add goal',
+                  buttonTextStyle:
+                      Theme.of(context).textTheme.headline4!.copyWith(
+                            fontSize: 7.sp,
+                          ),
+                ),
               )
             ],
           ),
