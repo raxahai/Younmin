@@ -8,10 +8,11 @@ import 'package:sizer/sizer.dart';
 import 'package:younmin/globals/Strings/home_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/login_button.dart';
 import 'package:younmin/globals/YounminWidgets/logo_button.dart';
+import 'package:younmin/globals/colors.dart';
 import 'package:younmin/presentation/home/subscribe.dart';
 import 'package:younmin/router/router.gr.dart';
 
-import 'app_bar_buttons.dart';
+import '../../globals/YounminWidgets/sign_up_button.dart';
 import 'home_row/resbonsive_home_row.dart';
 
 late ScrollController scrollController = ScrollController();
@@ -30,30 +31,23 @@ class Home extends StatelessWidget {
       appBar: ScrollAppBar(
         automaticallyImplyLeading: false,
         controller: scrollController,
-        toolbarHeight: 80, // double
-        title: Padding(
-          padding: EdgeInsets.only(top: 2.h),
-          child: const LogoButton(),
-        ),
+        toolbarHeight: 70, // double
+        title: const LogoButton(),
         actions: <Widget>[
-          Flexible(
-            child: Padding(
-              padding: EdgeInsets.only(right: 2.w, top: 3.h),
-              child: SignUpButton(
-                onPressed: () {
-                  context.router.navigate(const SignUpRoute());
-                },
-              ),
+          Padding(
+            padding: EdgeInsets.only(right: 1.w, top: 3.5.h, bottom: 10),
+            child: SignUpButton(
+              onPressed: () {
+                context.router.navigate(const SignUpRoute());
+              },
             ),
           ),
-          Flexible(
-            child: Padding(
-              padding: EdgeInsets.only(right: 3.w, top: 3.5.h),
-              child: LoginButton(
-                onPressed: () {
-                  context.router.navigate(const LoginRoute());
-                },
-              ),
+          Padding(
+            padding: EdgeInsets.only(right: 2.w, top: 3.5.h, bottom: 10),
+            child: LoginButton(
+              onPressed: () {
+                context.router.navigate(const LoginRoute());
+              },
             ),
           ),
         ],

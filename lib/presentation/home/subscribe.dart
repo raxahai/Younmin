@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:younmin/globals/Strings/global_strings.dart';
 import 'package:younmin/globals/Strings/home_page_strings.dart';
+import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
 import 'package:younmin/globals/validators.dart';
 import 'package:younmin/logic/subscribe/subscribe_cubit.dart';
@@ -54,20 +55,16 @@ class Subscribe extends StatelessWidget {
                 Container(
                   height: 25,
                 ),
-                ElevatedButton(
+                CapsuleButton(
+                  minHeight: 50,
+                  minWidth: 200,
                   onPressed: () {
                     BlocProvider.of<SubscribeCubit>(context).subscribeWithEmail(
                         context,
                         formKey: formKey,
                         emailController: emailController);
                   },
-                  child: Text(
-                    GlobalStrings.sendEmail,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline3!
-                        .copyWith(fontSize: 20),
-                  ),
+                  buttonText: GlobalStrings.subscribe,
                 )
               ],
             ),
