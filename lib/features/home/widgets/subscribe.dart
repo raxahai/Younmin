@@ -1,12 +1,13 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:younmin/features/home/bloc/subscribe_cubit.dart';
 import 'package:younmin/globals/Strings/global_strings.dart';
 import 'package:younmin/globals/Strings/home_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
+import 'package:younmin/globals/colors.dart';
 import 'package:younmin/globals/validators.dart';
-import 'package:younmin/logic/subscribe/subscribe_cubit.dart';
 
 final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 final TextEditingController emailController = TextEditingController();
@@ -37,7 +38,9 @@ class Subscribe extends StatelessWidget {
                 ),
                 SelectableText(
                   HomePageStrings5.subText,
-                  style: Theme.of(context).textTheme.headline3,
+                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                        color: YounminColors.secondaryColor,
+                      ),
                   textAlign: TextAlign.center,
                 ),
                 Container(

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/globals/colors.dart';
 
 class HomeRow extends StatelessWidget {
   const HomeRow({
@@ -105,7 +106,7 @@ class TheTexts extends StatelessWidget {
   final bool alignFromStart;
   final String mainText;
   final String subText;
-  final mainTextSize;
+  final double mainTextSize;
   final double mainTextConstraint;
   final double subTextConstraint;
 
@@ -137,7 +138,9 @@ class TheTexts extends StatelessWidget {
           child: SelectableText(
             subText,
             textAlign: alignFromStart ? TextAlign.left : TextAlign.right,
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+                  color: YounminColors.secondaryColor,
+                ),
           ),
         ),
         SizedBox(height: 2.h),

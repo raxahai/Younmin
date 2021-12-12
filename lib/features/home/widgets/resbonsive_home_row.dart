@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:younmin/presentation/home/home_row/home_row.dart';
-import 'package:younmin/presentation/home/home_row/home_row_mobile.dart';
+import 'package:younmin/features/home/widgets/home_row.dart';
+import 'package:younmin/features/home/widgets/home_row_mobile.dart';
 
 class ResponsiveHomeRow extends StatelessWidget {
   const ResponsiveHomeRow({

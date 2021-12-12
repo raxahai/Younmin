@@ -5,15 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:inview_notifier_list/inview_notifier_list.dart';
 import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/features/home/widgets/resbonsive_home_row.dart';
+import 'package:younmin/features/home/widgets/subscribe.dart';
 import 'package:younmin/globals/Strings/home_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/login_button.dart';
 import 'package:younmin/globals/YounminWidgets/logo_button.dart';
-import 'package:younmin/globals/colors.dart';
-import 'package:younmin/presentation/home/subscribe.dart';
 import 'package:younmin/router/router.gr.dart';
-
-import '../../globals/YounminWidgets/sign_up_button.dart';
-import 'home_row/resbonsive_home_row.dart';
+import '../../../globals/YounminWidgets/sign_up_button.dart';
 
 late ScrollController scrollController = ScrollController();
 
