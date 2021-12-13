@@ -8,16 +8,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
+import 'package:younmin/features/login/bloc/login_cubit.dart';
+import 'package:younmin/features/yearlyTodo/bloc/yearly_todo_cubit.dart';
+import 'package:younmin/features/yearlyTodo/widgets/add_yearly_todo_dialog.dart';
+import 'package:younmin/features/yearlyTodo/widgets/yearly_todo_tile.dart';
 import 'package:younmin/globals/Strings/global_strings.dart';
 import 'package:younmin/globals/Strings/yearlyTodo_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/choose_feeling.dart';
 import 'package:younmin/globals/YounminWidgets/logo_button.dart';
 import 'package:younmin/globals/colors.dart';
-import 'package:younmin/logic/login/login_cubit.dart';
-import 'package:younmin/logic/yearlyTodo/yearly_todo_cubit.dart';
-import 'package:younmin/presentation/yearlyTodo/add_yearly_todo.dart';
-import 'package:younmin/presentation/yearlyTodo/yearly_todo_tile.dart';
 
 Future<User?> getUser() async {
   await Future.delayed(const Duration(seconds: 1));
@@ -138,8 +138,12 @@ class _YearlyTodoState extends State<YearlyTodo>
                                     ),
                                     Text(
                                       user!.displayName ?? " ",
-                                      style:
-                                          Theme.of(context).textTheme.headline3,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .headline3!
+                                          .copyWith(
+                                            color: YounminColors.secondaryColor,
+                                          ),
                                     ),
                                   ],
                                 ),

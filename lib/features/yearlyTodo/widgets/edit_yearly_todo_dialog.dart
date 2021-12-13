@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/features/yearlyTodo/bloc/yearly_todo_cubit.dart';
 import 'package:younmin/globals/Strings/yearlyTodo_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/choose_feeling.dart';
 import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
 import 'package:younmin/globals/colors.dart';
-import 'package:younmin/logic/yearlyTodo/yearly_todo_cubit.dart';
 
 class EditYearlyTodo extends StatefulWidget {
   const EditYearlyTodo({Key? key, required this.taskDoc}) : super(key: key);
@@ -66,7 +66,9 @@ class _EditYearlyTodoState extends State<EditYearlyTodo> {
                 width: double.infinity,
                 child: CustomTextField(
                   controller: goalController,
-                  style: Theme.of(context).textTheme.headline3,
+                  style: Theme.of(context).textTheme.headline3!.copyWith(
+                        color: YounminColors.secondaryColor,
+                      ),
                 ),
               ),
               SizedBox(height: 3.h),

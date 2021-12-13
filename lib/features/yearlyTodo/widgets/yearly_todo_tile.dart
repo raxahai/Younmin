@@ -4,14 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:younmin/features/yearlyTodo/bloc/yearly_todo_cubit.dart';
+import 'package:younmin/features/yearlyTodo/widgets/delete_yearly_todo_dialog.dart';
+import 'package:younmin/features/yearlyTodo/widgets/edit_yearly_todo_dialog.dart';
 import 'package:younmin/globals/Strings/yearlyTodo_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/on_hover_button.dart';
 import 'package:younmin/globals/colors.dart';
-import 'package:younmin/logic/yearlyTodo/yearly_todo_cubit.dart';
 import 'package:younmin/router/router.gr.dart';
-
-import 'delete_yearly_todo.dart';
-import 'edit_yearly_todo.dart';
 
 class YearlyTodoTile extends StatelessWidget {
   const YearlyTodoTile({Key? key, this.index, required this.item})
