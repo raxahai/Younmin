@@ -5,12 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/features/sign_up/bloc/sign_up_cubit.dart';
+import 'package:younmin/features/sign_up/widgets/text_fields.dart';
 import 'package:younmin/globals/Strings/sign_up_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/logo_button.dart';
 import 'package:younmin/globals/colors.dart';
-import 'package:younmin/logic/signUp/sign_up_cubit.dart';
-import 'package:younmin/presentation/sign_up/text_fields.dart';
 import 'package:younmin/router/router.gr.dart';
 
 class SignUp extends StatefulWidget {

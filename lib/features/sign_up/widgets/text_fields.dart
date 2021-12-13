@@ -3,11 +3,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:rolling_switch/rolling_switch.dart';
+import 'package:younmin/features/sign_up/bloc/sign_up_cubit.dart';
 import 'package:younmin/globals/Strings/sign_up_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
 import 'package:younmin/globals/colors.dart';
 import 'package:younmin/globals/validators.dart';
-import 'package:younmin/logic/signUp/sign_up_cubit.dart';
 
 class FirstNameAndGender extends StatelessWidget {
   const FirstNameAndGender({
@@ -43,7 +43,10 @@ class FirstNameAndGender extends StatelessWidget {
           ),
         ),
       ),
-      style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 20),
+      style: Theme.of(context).textTheme.headline3!.copyWith(
+            fontSize: 20,
+            color: YounminColors.secondaryColor,
+          ),
       validator: Validators.isValidFirstName,
     );
   }
@@ -72,8 +75,10 @@ class LastNameAndAge extends StatelessWidget {
               isDense: true,
               hintText: SignUpStrings.lastName,
             ),
-            style:
-                Theme.of(context).textTheme.headline3!.copyWith(fontSize: 20),
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+                  fontSize: 20,
+                  color: YounminColors.secondaryColor,
+                ),
             validator: Validators.isValidLastName,
           ),
         ),
@@ -92,7 +97,10 @@ class LastNameAndAge extends StatelessWidget {
             hintText: SignUpStrings.age,
             isDense: true,
           ),
-          style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 20),
+          style: Theme.of(context).textTheme.headline3!.copyWith(
+                fontSize: 20,
+                color: YounminColors.secondaryColor,
+              ),
           validator: Validators.isValidAge,
         ),
       ],
@@ -142,7 +150,10 @@ class SignUpEmailField extends StatelessWidget {
               );
             },
           )),
-      style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 20),
+      style: Theme.of(context)
+          .textTheme
+          .headline3!
+          .copyWith(fontSize: 20, color: YounminColors.secondaryColor),
       validator: Validators.isValidEmail,
     );
   }
@@ -173,8 +184,10 @@ class PasswordFields extends StatelessWidget {
               hintText: SignUpStrings.password,
               isDense: true,
             ),
-            style:
-                Theme.of(context).textTheme.headline3!.copyWith(fontSize: 20),
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+                  fontSize: 20,
+                  color: YounminColors.secondaryColor,
+                ),
             validator: Validators.isValidPassword,
             onChanged: (value) {
               password = value;
@@ -185,16 +198,17 @@ class PasswordFields extends StatelessWidget {
         Flexible(
           child: SizedBox(
             width: 245,
-            child: TextFormField(
+            child: CustomTextField(
               controller: confirmController,
               obscureText: true,
-              cursorColor: YounminColors.darkPrimaryColor,
               decoration: InputDecoration(
                 hintText: SignUpStrings.confirmPassword,
                 isDense: true,
               ),
-              style:
-                  Theme.of(context).textTheme.headline3!.copyWith(fontSize: 20),
+              style: Theme.of(context).textTheme.headline3!.copyWith(
+                    fontSize: 20,
+                    color: YounminColors.secondaryColor,
+                  ),
               validator: (value) => Validators.isValidConfirmPassword(
                   value, passwordController!.text),
             ),
