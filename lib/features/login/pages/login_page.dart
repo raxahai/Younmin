@@ -4,12 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/features/login/bloc/login_cubit.dart';
+import 'package:younmin/features/login/widgets/text_fields.dart';
 import 'package:younmin/globals/Strings/login_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/logo_button.dart';
 import 'package:younmin/globals/colors.dart';
-import 'package:younmin/logic/login/login_cubit.dart';
-import 'package:younmin/presentation/login/text_fields.dart';
 import 'package:younmin/router/router.gr.dart';
 
 TextEditingController _emailController = TextEditingController();

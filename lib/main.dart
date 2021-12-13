@@ -8,8 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/features/login/bloc/login_cubit.dart';
 import 'package:younmin/globals/app_theme.dart';
-import 'logic/login/login_cubit.dart';
 import 'router/router.gr.dart';
 
 // set this const into true if we want to use firebase emulator for testing

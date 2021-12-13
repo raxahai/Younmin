@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:younmin/globals/Strings/login_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
+import 'package:younmin/globals/colors.dart';
 import 'package:younmin/globals/validators.dart';
 
 class LoginEmailField extends StatelessWidget {
@@ -23,7 +24,10 @@ class LoginEmailField extends StatelessWidget {
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         ),
-        style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 30),
+        style: Theme.of(context)
+            .textTheme
+            .headline3!
+            .copyWith(fontSize: 30, color: YounminColors.secondaryColor),
         validator: Validators.isValidEmail,
       ),
     );
@@ -51,7 +55,10 @@ class PasswordField extends StatelessWidget {
           contentPadding:
               const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         ),
-        style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 30),
+        style: Theme.of(context).textTheme.headline3!.copyWith(
+              fontSize: 30,
+              color: YounminColors.secondaryColor,
+            ),
         validator: Validators.isRequired,
       ),
     );
