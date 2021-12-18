@@ -7,11 +7,11 @@ import 'package:scroll_app_bar/scroll_app_bar.dart';
 import 'package:sizer/sizer.dart';
 import 'package:younmin/features/home/widgets/resbonsive_home_row.dart';
 import 'package:younmin/features/home/widgets/subscribe.dart';
+import 'package:younmin/globals/Strings/global_strings.dart';
 import 'package:younmin/globals/Strings/home_page_strings.dart';
-import 'package:younmin/globals/YounminWidgets/login_button.dart';
+import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/logo_button.dart';
 import 'package:younmin/router/router.gr.dart';
-import '../../../globals/YounminWidgets/sign_up_button.dart';
 
 late ScrollController scrollController = ScrollController();
 
@@ -34,7 +34,8 @@ class Home extends StatelessWidget {
         actions: <Widget>[
           Padding(
             padding: EdgeInsets.only(right: 1.w, top: 3.5.h, bottom: 10),
-            child: SignUpButton(
+            child: CapsuleButton(
+              buttonText: GlobalStrings.signUp,
               onPressed: () {
                 context.router.navigate(const SignUpRoute());
               },
@@ -42,10 +43,11 @@ class Home extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.only(right: 2.w, top: 3.5.h, bottom: 10),
-            child: LoginButton(
+            child: CapsuleButton(
               onPressed: () {
                 context.router.navigate(const LoginRoute());
               },
+              buttonText: GlobalStrings.login,
             ),
           ),
         ],
