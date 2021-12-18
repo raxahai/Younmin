@@ -14,8 +14,7 @@ final TextStyle headline2Style = GoogleFonts.lato(
   fontWeight: FontWeight.w900,
 );
 final TextStyle headline3Style = GoogleFonts.lato(
-  textStyle:
-      const TextStyle(fontSize: 20, color: YounminColors.textHeadline1Color),
+  textStyle: const TextStyle(fontSize: 20, color: YounminColors.primaryColor),
   fontWeight: FontWeight.w900,
 );
 
