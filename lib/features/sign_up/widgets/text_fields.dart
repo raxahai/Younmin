@@ -7,7 +7,7 @@ import 'package:younmin/features/sign_up/bloc/sign_up_cubit.dart';
 import 'package:younmin/globals/Strings/sign_up_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
 import 'package:younmin/globals/colors.dart';
-import 'package:younmin/globals/validators.dart';
+import 'package:younmin/globals/utils/validators.dart';
 
 class FirstNameAndGender extends StatelessWidget {
   const FirstNameAndGender({

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:younmin/globals/Strings/login_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
 import 'package:younmin/globals/colors.dart';
-import 'package:younmin/globals/validators.dart';
+import 'package:younmin/globals/utils/validators.dart';
 
 class LoginEmailField extends StatelessWidget {
   const LoginEmailField({

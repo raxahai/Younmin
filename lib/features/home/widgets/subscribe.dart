@@ -7,7 +7,7 @@ import 'package:younmin/globals/Strings/home_page_strings.dart';
 import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/YounminWidgets/custom_text_field.dart';
 import 'package:younmin/globals/colors.dart';
-import 'package:younmin/globals/validators.dart';
+import 'package:younmin/globals/utils/validators.dart';
 
 final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 final TextEditingController emailController = TextEditingController();
