@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:younmin/logic/helping_functions.dart';
+import 'package:younmin/globals/utils/helping_functions.dart';
 
 part 'daily_check_state.dart';
 
