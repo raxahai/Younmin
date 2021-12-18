@@ -6,12 +6,12 @@
 
 import 'package:auto_route/auto_route.dart' as _i7;
 import 'package:flutter/material.dart' as _i8;
-import 'package:younmin/presentation/home/home.dart' as _i1;
-import 'package:younmin/presentation/login/login.dart' as _i2;
-import 'package:younmin/presentation/main/main_page.dart' as _i6;
-import 'package:younmin/presentation/questions/questions.dart' as _i5;
-import 'package:younmin/presentation/sign_up/sign_up.dart' as _i3;
-import 'package:younmin/presentation/yearlyTodo/yearly_todo.dart' as _i4;
+import 'package:younmin/features/home/pages/home_page.dart' as _i1;
+import 'package:younmin/features/login/pages/login_page.dart' as _i2;
+import 'package:younmin/features/main/pages/main_page.dart' as _i6;
+import 'package:younmin/features/questions/pages/questions_page.dart' as _i5;
+import 'package:younmin/features/sign_up/pages/sign_up_page.dart' as _i3;
+import 'package:younmin/features/yearlyTodo/pages/yearly_todo_page.dart' as _i4;
 
 class YounminRouter extends _i7.RootStackRouter {
   YounminRouter([_i8.GlobalKey<_i8.NavigatorState>? navigatorKey])

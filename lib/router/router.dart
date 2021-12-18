@@ -1,10 +1,10 @@
 import 'package:auto_route/annotations.dart';
-import 'package:younmin/presentation/home/home.dart';
-import 'package:younmin/presentation/login/login.dart';
-import 'package:younmin/presentation/main/main_page.dart';
-import 'package:younmin/presentation/questions/questions.dart';
-import 'package:younmin/presentation/sign_up/sign_up.dart';
-import 'package:younmin/presentation/yearlyTodo/yearly_todo.dart';
+import 'package:younmin/features/home/pages/home_page.dart';
+import 'package:younmin/features/login/pages/login_page.dart';
+import 'package:younmin/features/questions/pages/questions_page.dart';
+import 'package:younmin/features/sign_up/pages/sign_up_page.dart';
+import 'package:younmin/features/main/pages/main_page.dart';
+import 'package:younmin/features/yearlyTodo/pages/yearly_todo_page.dart';
 
 @AdaptiveAutoRouter(routes: <AutoRoute>[
   AutoRoute(path: "/", page: Home, initial: true),
