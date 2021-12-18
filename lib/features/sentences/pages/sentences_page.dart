@@ -1,14 +1,16 @@
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/features/sentences/bloc/sentences_cubit.dart';
+import 'package:younmin/globals/YounminWidgets/capsule_button.dart';
 import 'package:younmin/globals/colors.dart';
-import 'package:younmin/logic/sentences/sentences_cubit.dart';
 
-import 'chat_bubble.dart';
-import 'fields.dart';
+import '../widgets/chat_bubble_widget.dart';
+import '../widgets/text_fields.dart';
 
 TextEditingController quantityController = TextEditingController();
 TextEditingController sentenceController = TextEditingController();
@@ -29,10 +31,22 @@ class Sentences extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Container(
-              color: Colors.white,
+              color: YounminColors.lightBlack,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Align(
+                    alignment: Alignment.topLeft,
+                    child: IconButton(
+                      icon: const Icon(Icons.close),
+                      onPressed: () {
+                        context.router.pop();
+                      },
+                      color: YounminColors.secondaryColor,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8.w,
+                  ),
                   Text(
                     "Sentences",
                     style: Theme.of(context)
@@ -73,7 +87,9 @@ class Sentences extends StatelessWidget {
                       builder: (context, state) {
                         return IgnorePointer(
                           ignoring: state.disableAddButton,
-                          child: ElevatedButton(
+                          child: CapsuleButton(
+                            minWidth: 220,
+                            minHeight: 50,
                             onPressed: () {
                               BlocProvider.of<SentencesCubit>(context)
                                   .createSentence(
@@ -82,10 +98,9 @@ class Sentences extends StatelessWidget {
                                       madeMeHappy: madeMeHappy,
                                       saidMe: saidMe);
                             },
-                            child: Text(
-                              "Add sentence",
-                              style: Theme.of(context).textTheme.headline3,
-                            ),
+                            buttonText: "Add sentence",
+                            buttonTextStyle:
+                                Theme.of(context).textTheme.headline3,
                           ),
                         );
                       })
@@ -96,7 +111,7 @@ class Sentences extends StatelessWidget {
           Expanded(
             flex: 5,
             child: Container(
-              color: YounminColors.yearlyTodoListColor,
+              color: YounminColors.primaryColor,
               child: Padding(
                   padding: EdgeInsets.only(top: 5.h),
                   child: BlocBuilder<SentencesCubit, SentencesState>(
@@ -126,7 +141,7 @@ class Sentences extends StatelessWidget {
                                         : "Told from " +
                                             item["toldNumber"].toString(),
                                     backGroundColor: item["madeMeHappy"]
-                                        ? YounminColors.darkPrimaryColor
+                                        ? YounminColors.lightBlack
                                         : YounminColors.badSentenceColor,
                                     sentenceDoc: item,
                                   ),

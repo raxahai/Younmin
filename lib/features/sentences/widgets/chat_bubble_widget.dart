@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/features/sentences/bloc/sentences_cubit.dart';
 import 'package:younmin/globals/colors.dart';
-import 'package:younmin/logic/sentences/sentences_cubit.dart';
 
 class ChatBubble extends StatelessWidget {
   const ChatBubble(
