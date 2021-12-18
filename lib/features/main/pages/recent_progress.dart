@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/features/main/bloc/history/history_cubit.dart';
 import 'package:younmin/globals/Strings/main_page_strings.dart';
 import 'package:younmin/globals/colors.dart';
-import 'package:younmin/logic/helping_functions.dart';
-import 'package:younmin/logic/history/history_cubit.dart';
+import 'package:younmin/globals/utils/helping_functions.dart';
 
-import 'linear_progress.dart';
+import '../widgets/linear_progress.dart';
 
 class RecentProgress extends StatelessWidget {
   const RecentProgress({
@@ -90,7 +90,7 @@ class RecentProgress extends StatelessWidget {
                       ),
                     ),
                     trailing: Container(
-                      margin: EdgeInsets.only(right: 10.w),
+                      margin: EdgeInsets.only(right: 5.w, left: 5.w),
                       width: 10.sp,
                       height: 10.sp,
                       child: Image.asset(

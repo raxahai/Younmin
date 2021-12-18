@@ -6,12 +6,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/features/main/bloc/dailyTodo/daily_todo_cubit.dart';
+import 'package:younmin/features/main/todo/daily_todo_tile.dart';
 import 'package:younmin/globals/colors.dart';
 import 'package:younmin/globals/styles/decoration.dart';
-import 'package:younmin/logic/dailyTodo/daily_todo_cubit.dart';
-import 'package:younmin/presentation/main/todo/daily_todo_tile.dart';
 
-import '../main_page.dart';
+import '../pages/main_page.dart';
 import 'add_todo.dart';
 
 class DailyTodo extends StatefulWidget {

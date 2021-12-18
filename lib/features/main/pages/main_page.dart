@@ -8,22 +8,23 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sizer/sizer.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:younmin/features/login/bloc/login_cubit.dart';
+import 'package:younmin/features/main/bloc/dailyCheckList/daily_check_cubit.dart';
+import 'package:younmin/features/main/bloc/dailyTodo/daily_todo_cubit.dart';
+import 'package:younmin/features/main/bloc/history/history_cubit.dart';
+import 'package:younmin/features/main/pages/recent_progress.dart';
+import 'package:younmin/features/main/widgets/overall_yearly_progress.dart';
+import 'package:younmin/features/sentences/bloc/sentences_cubit.dart';
+import 'package:younmin/features/sentences/pages/sentences_page.dart';
 import 'package:younmin/globals/Strings/main_page_strings.dart';
+import 'package:younmin/globals/YounminWidgets/app_bar.dart';
 import 'package:younmin/globals/colors.dart';
 import 'package:younmin/globals/styles/decoration.dart';
-import 'package:younmin/logic/dailyCheckList/daily_check_cubit.dart';
-import 'package:younmin/logic/dailyTodo/daily_todo_cubit.dart';
-import 'package:younmin/logic/helping_functions.dart';
-import 'package:younmin/logic/history/history_cubit.dart';
-import 'package:younmin/logic/login/login_cubit.dart';
-import 'package:younmin/logic/sentences/sentences_cubit.dart';
-import 'package:younmin/presentation/main/recent_progress.dart';
-import 'package:younmin/presentation/main/sentences/sentences_list.dart';
-import 'package:younmin/presentation/main/yearlyProgress/overall_yearly_progress.dart';
+import 'package:younmin/globals/utils/helping_functions.dart';
 import 'package:younmin/router/router.gr.dart';
 
-import 'dailyCheck/daily_check_list.dart';
-import 'todo/daily_todo.dart';
+import '../dailyCheck/daily_check_list.dart';
+import '../todo/daily_todo.dart';
 
 late QueryDocumentSnapshot<Map<String, dynamic>> taskDoc;
 
@@ -103,71 +104,55 @@ class _MainPageState extends State<MainPage> {
       child: Builder(builder: (context) {
         return Scaffold(
           extendBodyBehindAppBar: true,
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(15.sp),
-            child: AppBar(
-              automaticallyImplyLeading: false,
-              leading: IconButton(
-                color: Colors.white,
-                icon: FaIcon(Icons.arrow_back_sharp),
+          appBar: CustomAppBarWithBackActionButton(
+            actions: [
+              IconButton(
+                tooltip: MainPageStrings.questions,
+                iconSize: 10.sp,
+                // splashRadius: 6.sp,
                 onPressed: () {
-                  context.router.pop();
+                  context.router.navigate(const QuestionsRoute());
                 },
+                icon: const FaIcon(
+                  FontAwesomeIcons.questionCircle,
+                  color: YounminColors.secondaryColor,
+                ),
               ),
-              actions: [
-                IconButton(
-                  tooltip: MainPageStrings.questions,
-                  iconSize: 10.sp,
-                  splashRadius: 6.sp,
-                  onPressed: () {
-                    context.router.navigate(const QuestionsRoute());
-                  },
-                  icon: const FaIcon(
-                    FontAwesomeIcons.questionCircle,
-                    color: YounminColors.primaryColor,
-                  ),
-                ),
-                IconButton(
-                  iconSize: 10.sp,
-                  onPressed: () {
-                    showModalBottomSheet<dynamic>(
-                      backgroundColor: YounminColors.backGroundColor,
-                      shape: RoundedRectangleBorder(
-                        //the rounded corner is created here
-                        borderRadius: BorderRadius.circular(5.sp),
-                      ),
-                      isScrollControlled: true,
-                      context: context,
-                      builder: (conext) => BlocProvider.value(
-                          value: BlocProvider.of<SentencesCubit>(context),
-                          child: const Sentences()),
-                    );
-                  },
-                  splashRadius: 6.sp,
-                  icon: const FaIcon(
-                    Icons.apps_rounded,
-                    color: YounminColors.darkPrimaryColor,
-                  ),
-                  tooltip: MainPageStrings.sentences,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 3.w),
-                  child: IconButton(
-                    iconSize: 10.sp,
-                    splashRadius: 5.sp,
-                    padding: EdgeInsets.zero,
-                    onPressed: () {
-                      BlocProvider.of<LoginCubit>(context).logout(context);
-                    },
-                    icon: const FaIcon(
-                      Icons.logout_rounded,
-                      color: YounminColors.primaryColor,
+              IconButton(
+                iconSize: 10.sp,
+                onPressed: () {
+                  showModalBottomSheet<dynamic>(
+                    backgroundColor: YounminColors.backGroundColor,
+                    shape: RoundedRectangleBorder(
+                      //the rounded corner is created here
+                      borderRadius: BorderRadius.circular(5.sp),
                     ),
-                    tooltip: MainPageStrings.logout,
-                  ),
+                    isScrollControlled: true,
+                    context: context,
+                    builder: (conext) => BlocProvider.value(
+                        value: BlocProvider.of<SentencesCubit>(context),
+                        child: const Sentences()),
+                  );
+                },
+                splashRadius: 6.sp,
+                icon: const FaIcon(
+                  Icons.apps_rounded,
+                  color: YounminColors.secondaryColor,
                 ),
-              ],
-            ),
+                tooltip: MainPageStrings.sentences,
+              ),
+              IconButton(
+                iconSize: 10.sp,
+                onPressed: () {
+                  BlocProvider.of<LoginCubit>(context).logout(context);
+                },
+                icon: const FaIcon(
+                  Icons.logout_rounded,
+                  color: YounminColors.secondaryColor,
+                ),
+                tooltip: MainPageStrings.logout,
+              ),
+            ],
           ),
           body: FutureBuilder(
               future: getTaskDoc(),

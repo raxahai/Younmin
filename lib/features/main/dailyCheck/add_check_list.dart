@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/globals/colors.dart';
 
 TextEditingController checkController = TextEditingController();
 
@@ -24,7 +25,10 @@ class AddCheck extends StatelessWidget {
             child: TextField(
               autofocus: true,
               controller: checkController,
-              decoration: const InputDecoration(hintText: "Enter your check"),
+              decoration: const InputDecoration(
+                hintText: "Enter your check",
+                hintStyle: TextStyle(color: YounminColors.primaryColor),
+              ),
             ),
           ),
           SizedBox(height: 5.h),

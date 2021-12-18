@@ -2,11 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/features/main/widgets/yearly_progress.dart';
 import 'package:younmin/globals/Strings/main_page_strings.dart';
-import 'package:younmin/presentation/main/yearlyProgress/yearly_progress.dart';
+import 'package:younmin/globals/colors.dart';
 
-import '../linear_progress.dart';
-import '../main_page.dart';
+import 'linear_progress.dart';
+import '../pages/main_page.dart';
 
 class OverAllYearlyProgress extends StatelessWidget {
   const OverAllYearlyProgress({
@@ -32,10 +33,9 @@ class OverAllYearlyProgress extends StatelessWidget {
             child: Text(
               'Overall yearly progress',
               textAlign: TextAlign.start,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline2!
-                  .copyWith(color: Colors.white),
+              style: Theme.of(context).textTheme.headline2!.copyWith(
+                    color: YounminColors.secondaryColor,
+                  ),
             ),
           ),
         ),
@@ -71,10 +71,7 @@ class OverAllYearlyProgress extends StatelessWidget {
             child: Text(
               MainPageStrings.thisMonth,
               textAlign: TextAlign.start,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText1!
-                  .copyWith(color: Colors.white),
+              style: Theme.of(context).textTheme.bodyText1,
             ),
           ),
         ),

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/globals/colors.dart';
 
 TextEditingController todoController = TextEditingController();
 
@@ -30,7 +31,10 @@ class AddTodo extends StatelessWidget {
             child: TextField(
               autofocus: true,
               controller: todoController,
-              decoration: InputDecoration(hintText: "Enter your task"),
+              decoration: const InputDecoration(
+                hintText: "Enter your task",
+                hintStyle: TextStyle(color: YounminColors.primaryColor),
+              ),
             ),
           ),
           SizedBox(

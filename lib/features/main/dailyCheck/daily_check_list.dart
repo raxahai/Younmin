@@ -7,11 +7,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
 import 'package:sizer/sizer.dart';
+import 'package:younmin/features/main/bloc/dailyCheckList/daily_check_cubit.dart';
+import 'package:younmin/features/main/dailyCheck/add_check_list.dart';
 import 'package:younmin/globals/YounminWidgets/check_box.dart';
 import 'package:younmin/globals/colors.dart';
 import 'package:younmin/globals/styles/decoration.dart';
-import 'package:younmin/logic/dailyCheckList/daily_check_cubit.dart';
-import 'package:younmin/presentation/main/dailyCheck/add_check_list.dart';
 
 List<String> checkList = [
   "Lorem ipsum",
@@ -56,7 +56,7 @@ class DailyCheckList extends StatelessWidget {
                 ),
                 IconButton(
                   tooltip: "add a check",
-                  color: YounminColors.darkPrimaryColor,
+                  color: YounminColors.primaryColor,
                   iconSize: 10.sp,
                   onPressed: () {
                     AwesomeDialog(
@@ -100,13 +100,13 @@ class DailyCheckList extends StatelessWidget {
                       curve: Curves.easeInOut,
                       animation: animation,
                       child: ListTile(
-                        minLeadingWidth: 10.w,
+                        // minLeadingWidth: 10.w,
                         leading: Tooltip(
                           message: "${index + 1}.${item["check"]}",
                           child: ConstrainedBox(
-                            constraints: BoxConstraints(maxWidth: 7.w),
+                            constraints: BoxConstraints(maxWidth: 16.w),
                             child: Text(
-                              "${index + 1}.${item["check"]}",
+                              "${index + 1}. ${item["check"]}",
                               overflow: TextOverflow.ellipsis,
                               style: Theme.of(context)
                                   .textTheme
@@ -127,7 +127,7 @@ class DailyCheckList extends StatelessWidget {
                               },
                             ),
                             IconButton(
-                                iconSize: 10.sp,
+                                iconSize: 35,
                                 onPressed: () {
                                   BlocProvider.of<DailyCheckCubit>(context)
                                       .deleteCheck(
