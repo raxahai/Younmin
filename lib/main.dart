@@ -9,6 +9,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:sizer/sizer.dart';
 import 'package:younmin/features/login/bloc/login_cubit.dart';
+import 'package:younmin/globals/YounminWidgets/custom_scroll_behaviour.dart';
 import 'package:younmin/globals/app_theme.dart';
 import 'router/router.gr.dart';
 
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
       return BlocProvider<LoginCubit>(
         create: (BuildContext context) => LoginCubit(),
         child: MaterialApp.router(
+          scrollBehavior: MyCustomScrollBehavior(),
           builder: (context, widget) => ResponsiveWrapper.builder(
             BouncingScrollWrapper.builder(context, widget!),
             maxWidth: 1800,
