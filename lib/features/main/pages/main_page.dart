@@ -125,7 +125,10 @@ class _MainPageState extends State<MainPage> {
                     backgroundColor: YounminColors.backGroundColor,
                     shape: RoundedRectangleBorder(
                       //the rounded corner is created here
-                      borderRadius: BorderRadius.circular(5.sp),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(5.sp),
+                        topRight: Radius.circular(5.sp),
+                      ),
                     ),
                     isScrollControlled: true,
                     context: context,
