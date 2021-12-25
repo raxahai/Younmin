@@ -1,11 +1,16 @@
 import 'dart:typed_data';
 
+import 'package:auto_route/src/router/auto_router_x.dart';
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_progress_hud/flutter_progress_hud.dart';
+import 'package:younmin/features/main/pages/main_page.dart';
+import 'package:younmin/features/yearlyTodo/models/user_update_model.dart';
+import 'package:younmin/globals/utils/exception_handler.dart';
 import 'package:younmin/globals/utils/helping_functions.dart';
 
 part 'yearly_todo_state.dart';
@@ -103,5 +108,41 @@ class YearlyTodoCubit extends Cubit<YearlyTodoState> {
       final photoUrl = await uploadedTask.ref.getDownloadURL();
       await _auth.currentUser!.updatePhotoURL(photoUrl);
     });
+  }
+
+  void editProfile(
+    BuildContext context, {
+    required firstNameController,
+    required lastNameController,
+    required ageController,
+    required emailController,
+    required GlobalKey<FormState> formKey,
+  }) async {
+    FirebaseAuth _auth = FirebaseAuth.instance;
+
+    var progress = ProgressHUD.of(context);
+    if (formKey.currentState!.validate()) {
+      try {
+        progress!.show();
+        await _auth.currentUser!.updateDisplayName(
+            "${firstNameController.text} ${lastNameController.text}");
+
+        final userData = UserDataModel(
+          int.parse(ageController.text),
+          _auth.currentUser!.uid,
+        );
+
+        // adding the additional data to the fireStore
+        await FirebaseFirestore.instance
+            .collection('users')
+            .add(userData.toJson());
+        progress.dismiss();
+        context.router.pop();
+      } catch (err) {
+        progress!.dismiss();
+        ExceptionHandler().handleFirebaseError(err, context);
+        return;
+      }
+    }
   }
 }

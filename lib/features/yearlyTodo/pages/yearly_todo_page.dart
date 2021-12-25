@@ -12,6 +12,7 @@ import 'package:sizer/sizer.dart';
 import 'package:younmin/features/login/bloc/login_cubit.dart';
 import 'package:younmin/features/yearlyTodo/bloc/yearly_todo_cubit.dart';
 import 'package:younmin/features/yearlyTodo/widgets/add_yearly_todo_dialog.dart';
+import 'package:younmin/features/yearlyTodo/widgets/edit_profile_dialog.dart';
 import 'package:younmin/features/yearlyTodo/widgets/yearly_todo_tile.dart';
 import 'package:younmin/globals/Strings/global_strings.dart';
 import 'package:younmin/globals/Strings/yearlyTodo_page_strings.dart';
@@ -75,7 +76,7 @@ class _YearlyTodoState extends State<YearlyTodo>
                           child: Container(
                             color: YounminColors.lightBlack,
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 const Padding(
                                   padding: EdgeInsets.only(top: 10),
@@ -148,23 +149,7 @@ class _YearlyTodoState extends State<YearlyTodo>
                                     ),
                                   ],
                                 ),
-                                CapsuleButton(
-                                  minHeight: 50,
-                                  minWidth: 220,
-                                  onPressed: () {
-                                    BlocProvider.of<LoginCubit>(context)
-                                        .logout(context);
-                                  },
-                                  buttonText: "Log out",
-                                  //   style: Theme.of(context)
-                                  //       .textTheme
-                                  //       .bodyText1!
-                                  //       .copyWith(fontSize: 20),
-                                  // )
-                                ),
-                                const SizedBox(
-                                  height: 15,
-                                )
+                                segregatedButtonLayout(context),
                               ],
                             ),
                           ),
@@ -191,6 +176,41 @@ class _YearlyTodoState extends State<YearlyTodo>
               }),
         );
       }),
+    );
+  }
+
+  Widget segregatedButtonLayout(BuildContext context) {
+    return Column(
+      children: [
+        CapsuleButton(
+          minHeight: 50,
+          minWidth: 220,
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext _) {
+                  return BlocProvider.value(
+                      child: const EditProfile(),
+                      value: BlocProvider.of<YearlyTodoCubit>(context));
+                });
+          },
+          buttonText: "Edit profile",
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        CapsuleButton(
+          minHeight: 50,
+          minWidth: 220,
+          onPressed: () {
+            BlocProvider.of<LoginCubit>(context).logout(context);
+          },
+          buttonText: "Log out",
+        ),
+        const SizedBox(
+          height: 15,
+        )
+      ],
     );
   }
 
