@@ -27,12 +27,16 @@ class DailyTodoTile extends StatelessWidget {
     return ListTile(
       onTap: () {
         showModalBottomSheet<dynamic>(
-          backgroundColor: YounminColors.backGroundColor,
+          backgroundColor: YounminColors.secondaryColor,
           shape: RoundedRectangleBorder(
             //the rounded corner is created here
-            borderRadius: BorderRadius.circular(5.sp),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(5.sp),
+              topRight: Radius.circular(5.sp),
+            ),
           ),
           isScrollControlled: true,
+          constraints: BoxConstraints(maxWidth: 60.w),
           context: context,
           builder: (_) => ChooseFeeling(
             onChoosed: (feelingNumber) {

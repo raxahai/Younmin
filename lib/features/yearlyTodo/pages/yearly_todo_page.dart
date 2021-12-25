@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:implicitly_animated_reorderable_list/implicitly_animated_reorderable_list.dart';
 import 'package:implicitly_animated_reorderable_list/transitions.dart';
+import 'package:sizer/sizer.dart';
 import 'package:younmin/features/login/bloc/login_cubit.dart';
 import 'package:younmin/features/yearlyTodo/bloc/yearly_todo_cubit.dart';
 import 'package:younmin/features/yearlyTodo/widgets/add_yearly_todo_dialog.dart';
@@ -261,6 +262,7 @@ class _YearlyTodoState extends State<YearlyTodo>
     if (widget.fistLogin) {
       AwesomeDialog(
               context: context,
+              width: 60.w,
               dialogType: DialogType.QUESTION,
               headerAnimationLoop: false,
               animType: AnimType.BOTTOMSLIDE,

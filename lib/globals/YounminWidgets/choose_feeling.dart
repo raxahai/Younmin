@@ -9,10 +9,11 @@ Map<String, bool> feelingsList = {
   "angry": false,
   "afraid": false,
   "scared": false,
-  "disgust:": false,
+  "100%": false,
   "shocked": false,
   "satisfied": false,
   "confused": false,
+  "thrilled": false,
 };
 
 class ChooseFeeling extends StatefulWidget {
@@ -30,39 +31,33 @@ class _ChooseFeelingState extends State<ChooseFeeling> {
     return Container(
       color: Colors.transparent,
       height: 20.h,
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: List.generate(
-            feelingsList.length,
-            (index) {
-              return CircleAvatar(
-                backgroundColor: feelingsList.values.toList()[index]
-                    ? YounminColors.primaryColor
-                    : Colors.transparent,
-                radius: 8.sp,
-                child: OnHoverButton(
-                  hoveredTransform: Matrix4.identity()..scale(1.2),
-                  animationDuration: const Duration(milliseconds: 200),
-                  child: IconButton(
-                    padding: EdgeInsets.symmetric(horizontal: 0.1.w),
-                    constraints:
-                        BoxConstraints(minHeight: 15.sp, minWidth: 15.sp),
-                    icon: Image.asset('assets/images/emoji/${index + 1}.png'),
-                    onPressed: () {
-                      widget.onChoosed!(index + 1);
-                      setState(() {
-                        feelingsList.keys.toList().forEach((key) {
-                          feelingsList[key] = false;
-                        });
-                        feelingsList[feelingsList.keys.toList()[index]] = true;
-                      });
-                    },
-                    tooltip: feelingsList.keys.toList()[index],
-                  ),
-                ),
-              );
-            },
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: feelingsList.length,
+        itemBuilder: (BuildContext context, int index) => OnHoverButton(
+          hoveredTransform: Matrix4.identity()..scale(1.2),
+          animationDuration: const Duration(milliseconds: 200),
+          child: CircleAvatar(
+            backgroundColor: feelingsList.values.toList()[index]
+                ? YounminColors.primaryColor
+                : Colors.transparent,
+            radius: 8.sp,
+            child: IconButton(
+              padding: EdgeInsets.symmetric(horizontal: 0.1.w),
+              constraints: BoxConstraints(minHeight: 15.sp, minWidth: 15.sp),
+              icon: Image.asset('assets/images/emoji/${index + 1}.png'),
+              onPressed: () {
+                widget.onChoosed!(index + 1);
+                setState(() {
+                  feelingsList.keys.toList().forEach((key) {
+                    feelingsList[key] = false;
+                  });
+                  feelingsList[feelingsList.keys.toList()[index]] = true;
+                });
+              },
+              tooltip: feelingsList.keys.toList()[index],
+            ),
           ),
         ),
       ),
